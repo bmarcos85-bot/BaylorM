@@ -147,3 +147,154 @@
             font-size: 12px;
             padding: 1px 6px;
             font-family: Arial, sans-serif;
+            box-shadow: 1px 1px 0px black;
+        }
+
+        .home-btn {
+            font-size: 13px;
+            padding: 4px 10px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            box-shadow: 2px 2px 0px black;
+        }
+
+        .home-btn:active, .back-btn:active, .close-modal-btn:active {
+            border: 1px solid #404040;
+            border-right-color: white;
+            border-bottom-color: white;
+            box-shadow: none;
+        }
+
+        .cursor {
+            display: inline-block;
+            width: 10px;
+            height: 18px;
+            background-color: black;
+            animation: blink 1s step-end infinite;
+            vertical-align: middle;
+        }
+
+        @keyframes blink { 50% { opacity: 0; } }
+
+        /* --- ZOOM OVERLAY MODAL SYSTEM --- */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.75);
+            z-index: 1000;
+            display: none; 
+            justify-content: center;
+            align-items: center;
+            padding: 40px;
+        }
+
+        .modal-window {
+            width: 85vw;
+            max-width: 800px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .modal-image-area {
+            height: 70vh;
+            background-color: #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-image-area img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="desktop-nav">
+        <a href="index.html" class="home-btn">💾 HOME</a>
+    </div>
+
+    <div class="workspace">
+        
+        <div class="side-column">
+            <div class="window image-window" onclick="openImage('IMG_8709.JPG', 'img_1.jpg')">
+                <div class="window-header"><span>img_1.jpg</span></div>
+                <div class="window-content image-area"><img src="IMG_8709.JPG" alt="1"></div>
+            </div>
+            <div class="window image-window" onclick="openImage('IMG_1541.JPG', 'img_2.jpg')">
+                <div class="window-header"><span>img_2.jpg</span></div>
+                <div class="window-content image-area"><img src="IMG_1541.JPG" alt="2"></div>
+            </div>
+            <div class="window image-window" onclick="openImage('IMG_0689.JPG', 'img_3.jpg')">
+                <div class="window-header"><span>img_3.jpg</span></div>
+                <div class="window-content image-area"><img src="IMG_0689.JPG" alt="3"></div>
+            </div>
+        </div>
+
+        <div class="window main-text-window">
+            <div class="window-header">
+                <span>NOTES.txt - TextEdit</span>
+                <a href="index.html" class="back-btn">X</a>
+            </div>
+            <div class="window-content text-area">
+                <p>These are my images that I created on TextEdit.</p>
+                <p>By corrupting the raw data of an image, I make the system confused, which causes random glitches to appear.
+                For most of these, I copied huge chunks of data and pasted them elsewhere, causing specific parts of the image to repeat. 
+                For the random stripes of color or cut-off sections, I deleted large sections of the data. I also 
+                pasted external text strings into the image code to break it even further.</p>
+                <span class="cursor"></span>
+            </div>
+        </div>
+
+        <div class="side-column">
+            <div class="window image-window" onclick="openImage('IMG_0766.jpeg', 'img_4.jpeg')">
+                <div class="window-header"><span>img_4.jpeg</span></div>
+                <div class="window-content image-area"><img src="IMG_0766.jpeg" alt="4"></div>
+            </div>
+            <div class="window image-window" onclick="openImage('IMG_4870.pdf', 'img_5.pdf')">
+                <div class="window-header"><span>img_5.pdf</span></div>
+                <div class="window-content image-area"><img src="IMG_4870.pdf" alt="5"></div>
+            </div>
+            <div class="window image-window" onclick="openImage('IMG_9054.JPG', 'img_6.jpg')">
+                <div class="window-header"><span>img_6.jpg</span></div>
+                <div class="window-content image-area"><img src="IMG_9054.JPG" alt="6"></div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="modal-overlay" id="imageModal" onclick="closeImage(event)">
+        <div class="window modal-window" onclick="event.stopPropagation()">
+            <div class="window-header">
+                <span id="modalTitle">IMAGE_VIEWER.EXE</span>
+                <button class="close-modal-btn" onclick="document.getElementById('imageModal').style.display='none'">X</button>
+            </div>
+            <div class="window-content modal-image-area">
+                <img id="modalImg" src="" alt="Expanded View">
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openImage(imgSrc, titleText) {
+            document.getElementById('modalImg').src = imgSrc;
+            document.getElementById('modalTitle').innerText = titleText + " - Image Viewer";
+            document.getElementById('imageModal').style.display = 'flex';
+        }
+
+        function closeImage(event) {
+            if(event.target.id === 'imageModal') {
+                document.getElementById('imageModal').style.display = 'none';
+            }
+        }
+    </script>
+
+</body>
+</html>
