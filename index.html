@@ -5,12 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GLITCH HUB</title>
     <style>
-        /* CUSTOMIZE THESE VARIABLES */
         :root {
-            --bg-color: #e0e0e0; 
-            --box-bg: #ffffff;
-            --accent-color: #000000;
-            --font-main: "Futura", "Trebuchet MS", Arial, sans-serif;
+            --bg-color: #008080; /* Classic 2000s Teal Desktop */
+            --win-grey: #c0c0c0;
+            --win-blue: linear-gradient(90deg, #000080, #1084d0);
+            --font-main: "Futura", "Trebuchet MS", sans-serif;
+            --stripe-height: 20px; /* Adjust this to make the black lines even bigger */
         }
 
         body {
@@ -22,79 +22,94 @@
             flex-direction: column;
             align-items: center;
             min-height: 100vh;
-            position: relative;
+            overflow-x: hidden;
         }
 
-        /* Top and Bottom Black Lines */
+        /* Thick Black Stripes */
         body::before, body::after {
             content: "";
             position: fixed;
             left: 0;
             width: 100%;
-            height: 2px;
+            height: var(--stripe-height);
             background-color: black;
-            z-index: 10;
+            z-index: 100;
         }
         body::before { top: 0; }
         body::after { bottom: 0; }
 
         h1 {
-            font-size: 4rem;
+            font-size: 5rem;
+            color: white;
+            text-shadow: 4px 4px 0px black;
+            margin-top: 80px;
             letter-spacing: -2px;
-            margin-top: 60px;
             text-transform: uppercase;
         }
 
         .container {
             display: flex;
-            gap: 40px;
+            gap: 50px;
             padding: 40px;
             flex-wrap: wrap;
             justify-content: center;
         }
 
-        /* clickable wrapper - removes default link styling */
         .box-link {
             text-decoration: none;
-            color: inherit;
+            color: black;
             display: block;
-            transition: transform 0.1s ease;
         }
 
-        /* Pop-up Box Style */
+        /* 2000s Pop-up Styling (Beveled Edges) */
         .window {
-            background: var(--box-bg);
-            border: 3px solid black;
-            box-shadow: 8px 8px 0px black; 
-            width: 300px;
-            overflow: hidden;
-        }
-
-        /* Hover Effect: Box "pushes in" slightly when hovered */
-        .box-link:hover {
-            transform: translate(2px, 2px);
-        }
-        
-        .box-link:hover .window {
-            box-shadow: 4px 4px 0px black;
+            background: var(--win-grey);
+            border-top: 2px solid #ffffff;
+            border-left: 2px solid #ffffff;
+            border-right: 2px solid #404040;
+            border-bottom: 2px solid #404040;
+            box-shadow: 2px 2px 0px black;
+            width: 320px;
+            padding: 3px;
         }
 
         .window-header {
-            background: black;
+            background: var(--win-blue);
             color: white;
-            padding: 5px 10px;
-            font-size: 0.9rem;
+            padding: 3px 8px;
+            font-size: 0.85rem;
             font-weight: bold;
             display: flex;
             justify-content: space-between;
+            align-items: center;
+            font-family: sans-serif; /* Standard system font look */
+        }
+
+        /* Retro "X" Button */
+        .close-btn {
+            background: var(--win-grey);
+            color: black;
+            border-top: 1px solid #ffffff;
+            border-left: 1px solid #ffffff;
+            border-right: 1px solid #404040;
+            border-bottom: 1px solid #404040;
+            width: 16px;
+            height: 14px;
+            line-height: 12px;
+            text-align: center;
+            font-size: 10px;
+            font-weight: bold;
         }
 
         .window-content {
-            padding: 15px;
-            height: 200px;
+            margin-top: 3px;
+            background: #ffffff;
+            border: 2px inset #808080; /* Sunken look */
+            height: 220px;
             display: flex;
             align-items: center;
             justify-content: center;
+            overflow: hidden;
         }
 
         .window-content img {
@@ -103,8 +118,13 @@
             object-fit: cover;
         }
 
-        .close-btn {
-            font-family: monospace;
+        /* Interactive feel */
+        .box-link:active .window {
+            border-top: 2px solid #404040;
+            border-left: 2px solid #404040;
+            border-right: 2px solid #ffffff;
+            border-bottom: 2px solid #ffffff;
+            transform: translate(1px, 1px);
         }
     </style>
 </head>
@@ -116,11 +136,11 @@
         <a href="textedit.html" class="box-link">
             <div class="window">
                 <div class="window-header">
-                    <span>TextEdit</span>
-                    <span class="close-btn">X</span>
+                    <span>TextEdit.exe</span>
+                    <div class="close-btn">x</div>
                 </div>
                 <div class="window-content">
-                    <img src="https://via.placeholder.com/250x150" alt="TextEdit">
+                    <img src="https://via.placeholder.com/300x220" alt="TextEdit Image">
                 </div>
             </div>
         </a>
@@ -128,11 +148,11 @@
         <a href="audacity.html" class="box-link">
             <div class="window">
                 <div class="window-header">
-                    <span>Audacity</span>
-                    <span class="close-btn">X</span>
+                    <span>Audacity.exe</span>
+                    <div class="close-btn">x</div>
                 </div>
                 <div class="window-content">
-                    <img src="https://via.placeholder.com/250x150" alt="Audacity">
+                    <img src="https://via.placeholder.com/300x220" alt="Audacity Image">
                 </div>
             </div>
         </a>
