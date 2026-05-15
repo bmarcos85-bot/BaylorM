@@ -6,11 +6,11 @@
     <title>TextEdit - GLITCH HUB</title>
     <style>
         :root {
-            --bg-color: #ff5733; /* CUSTOMIZE YOUR BACKGROUND COLOR HERE */
+            --bg-color: #ff5733; 
             --win-grey: #c0c0c0;
             --win-blue: linear-gradient(90deg, #000080, #1084d0);
             --font-main: "Futura", "Trebuchet MS", sans-serif;
-            --stripe-height: 20px;
+            --stripe-height: 25px;
         }
 
         body {
@@ -21,11 +21,11 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            overflow: hidden;
+            min-height: 100vh;
+            overflow-x: hidden;
         }
 
-        /* Top and Bottom Black Stripes */
+        /* Thick Black Stripes */
         body::before, body::after {
             content: "";
             position: fixed;
@@ -38,7 +38,23 @@
         body::before { top: 0; }
         body::after { bottom: 0; }
 
-        /* The Large TextEdit Window */
+        /* Layout Wrapper */
+        .workspace {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            padding: 40px;
+            margin-top: 20px;
+        }
+
+        /* Column for side images */
+        .side-column {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        /* Retro Window Base Style */
         .window {
             background: var(--win-grey);
             border-top: 2px solid #ffffff;
@@ -46,93 +62,127 @@
             border-right: 2px solid #404040;
             border-bottom: 2px solid #404040;
             box-shadow: 4px 4px 0px black;
-            width: 80%; /* Much bigger size */
-            max-width: 800px;
             padding: 3px;
         }
 
         .window-header {
             background: var(--win-blue);
             color: white;
-            padding: 4px 10px;
-            font-size: 0.9rem;
+            padding: 3px 8px;
+            font-size: 0.8rem;
             font-weight: bold;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
-        /* Nav back button styled like an 'X' or 'Back' */
-        .back-btn {
-            background: var(--win-grey);
-            color: black;
-            border-top: 1px solid #ffffff;
-            border-left: 1px solid #ffffff;
-            border-right: 1px solid #404040;
-            border-bottom: 1px solid #404040;
-            text-decoration: none;
-            padding: 2px 8px;
-            font-size: 12px;
-            font-weight: bold;
+        /* Main Text Box Width */
+        .main-text-window {
+            width: 500px;
+        }
+
+        /* Smaller Image Boxes */
+        .image-window {
+            width: 120px;
         }
 
         .window-content {
             margin-top: 3px;
             background: #ffffff;
             border: 2px inset #808080;
-            height: 400px; /* Large area for writing */
-            padding: 20px;
-            overflow-y: auto;
-            color: black;
-            line-height: 1.6;
-            font-family: 'Courier New', Courier, monospace; /* Classic typewriter font */
+            overflow: hidden;
         }
 
-        /* Custom Blinking Cursor */
+        .text-area {
+            height: 350px;
+            padding: 15px;
+            overflow-y: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+
+        .image-area {
+            height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .image-area img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: cover;
+        }
+
+        .back-btn {
+            background: var(--win-grey);
+            color: black;
+            border: 1px solid white;
+            border-right-color: #404040;
+            border-bottom-color: #404040;
+            text-decoration: none;
+            font-size: 10px;
+            padding: 0 4px;
+        }
+
         .cursor {
             display: inline-block;
-            width: 10px;
-            height: 18px;
+            width: 8px;
+            height: 15px;
             background-color: black;
             animation: blink 1s step-end infinite;
-            vertical-align: middle;
-            margin-left: 5px;
         }
 
-        @keyframes blink {
-            50% { opacity: 0; }
-        }
-
-        .home-link {
-            position: absolute;
-            top: 40px;
-            left: 40px;
-            color: white;
-            text-decoration: underline;
-        }
+        @keyframes blink { 50% { opacity: 0; } }
     </style>
 </head>
 <body>
 
-    <div class="window">
-        <div class="window-header">
-            <span>README.txt - TextEdit</span>
-            <a href="index.html" class="back-btn">X</a>
+    <div class="workspace">
+        
+        <div class="side-column">
+            <div class="window image-window">
+                <div class="window-header"><span>img_1</span></div>
+                <div class="window-content image-area"><img src="https://via.placeholder.com/120x100" alt="1"></div>
+            </div>
+            <div class="window image-window">
+                <div class="window-header"><span>img_2</span></div>
+                <div class="window-content image-area"><img src="https://via.placeholder.com/120x100" alt="2"></div>
+            </div>
+            <div class="window image-window">
+                <div class="window-header"><span>img_3</span></div>
+                <div class="window-content image-area"><img src="https://via.placeholder.com/120x100" alt="3"></div>
+            </div>
         </div>
-        <div class="window-content">
-            <p>
-                This is where you can write your paragraph. 
-                The layout uses a fixed-width font to mimic the look of 
-                Notepad and TextEdit applications from the early 2000s. 
-                Everything inside this white box is fully customizable.
-            </p>
-            <p>
-                You can add as much text as you want here. If the text 
-                gets too long, a scrollbar will appear on the right side, 
-                just like a real vintage computer program.
-            </p>
-            <span class="cursor"></span>
+
+        <div class="window main-text-window">
+            <div class="window-header">
+                <span>NOTES.txt</span>
+                <a href="index.html" class="back-btn">X</a>
+            </div>
+            <div class="window-content text-area">
+                <p>Edit this text to include your paragraph here...</p>
+                <p>The side windows are ready for your custom images. Simply replace the placeholder URLs in the "img" tags.</p>
+                <span class="cursor"></span>
+            </div>
         </div>
+
+        <div class="side-column">
+            <div class="window image-window">
+                <div class="window-header"><span>img_4</span></div>
+                <div class="window-content image-area"><img src="https://via.placeholder.com/120x100" alt="4"></div>
+            </div>
+            <div class="window image-window">
+                <div class="window-header"><span>img_5</span></div>
+                <div class="window-content image-area"><img src="https://via.placeholder.com/120x100" alt="5"></div>
+            </div>
+            <div class="window image-window">
+                <div class="window-header"><span>img_6</span></div>
+                <div class="window-content image-area"><img src="https://via.placeholder.com/120x100" alt="6"></div>
+            </div>
+        </div>
+
     </div>
 
 </body>
