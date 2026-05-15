@@ -43,15 +43,23 @@
         body::before { top: 0; }
         body::after { bottom: 0; }
 
+        /* Top Right Navigation Container */
+        .desktop-nav {
+            position: fixed;
+            top: calc(var(--stripe-height) + 15px);
+            right: 20px;
+            z-index: 200;
+        }
+
         /* Workspace Layout */
         .workspace {
             display: flex;
             flex-direction: column;
             align-items: center;
             gap: 25px;
-            padding: 60px 20px;
+            padding: 80px 20px 60px 20px; /* Adjusted top padding to clear space for the button */
             z-index: 10;
-            max-width: 1100px; /* Widened slightly to accommodate bigger images */
+            max-width: 1100px; 
             width: 100%;
         }
 
@@ -102,7 +110,7 @@
         /* Grid for Bigger Images */
         .image-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr); /* 2x2 layout makes images much larger */
+            grid-template-columns: repeat(2, 1fr); 
             gap: 25px;
             width: 100%;
         }
@@ -114,11 +122,11 @@
         }
         
         .image-window:hover {
-            transform: scale(1.02); /* Subtle pop on hover */
+            transform: scale(1.02); 
         }
 
         .image-area {
-            height: 280px; /* Significantly increased height */
+            height: 280px; 
             display: flex;
             align-items: center;
             justify-content: center;
@@ -132,7 +140,7 @@
         }
 
         /* System Buttons */
-        .back-btn, .close-modal-btn {
+        .back-btn, .close-modal-btn, .home-btn {
             background: var(--win-grey);
             color: black;
             border: 1px solid white;
@@ -143,6 +151,25 @@
             padding: 1px 6px;
             font-family: Arial, sans-serif;
             cursor: pointer;
+            box-shadow: 1px 1px 0px black;
+        }
+
+        /* Distinct Home Button Design Elements */
+        .home-btn {
+            font-size: 13px;
+            padding: 4px 10px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            box-shadow: 2px 2px 0px black;
+        }
+
+        .home-btn:active, .back-btn:active, .close-modal-btn:active {
+            border: 1px solid #404040;
+            border-right-color: white;
+            border-bottom-color: white;
+            box-shadow: none;
         }
 
         .cursor {
@@ -163,9 +190,9 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.7); /* Dim background */
+            background-color: rgba(0, 0, 0, 0.7); 
             z-index: 1000;
-            display: none; /* Hidden by default */
+            display: none; 
             justify-content: center;
             align-items: center;
             padding: 40px;
@@ -180,7 +207,7 @@
         }
 
         .modal-image-area {
-            height: 70vh; /* Takes up most of the screen height */
+            height: 70vh; 
             background-color: #000;
             display: flex;
             align-items: center;
@@ -195,6 +222,10 @@
     </style>
 </head>
 <body>
+
+    <div class="desktop-nav">
+        <a href="index.html" class="home-btn">💾 HOME</a>
+    </div>
 
     <div class="workspace">
         
@@ -251,7 +282,6 @@
         }
 
         function closeImage(event) {
-            // Closes window only if user clicks the dark background
             if(event.target.id === 'imageModal') {
                 document.getElementById('imageModal').style.display = 'none';
             }
