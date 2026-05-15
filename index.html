@@ -6,7 +6,7 @@
     <title>GLITCH HUB</title>
     <style>
         :root {
-            /* 1. REPLACE THE URL BELOW WITH YOUR DESIRED BACKGROUND IMAGE FILE */
+            /* Fallback or default background image */
             --bg-image: url('glit ch.jpg'); 
             --bg-color: #008080; /* Fallback classic desktop teal */
             
@@ -29,6 +29,7 @@
             align-items: center;
             min-height: 100vh;
             overflow-x: hidden;
+            position: relative;
         }
 
         /* Thick Black Stripes */
@@ -59,6 +60,7 @@
             padding: 40px;
             flex-wrap: wrap;
             justify-content: center;
+            margin-bottom: 60px; /* Space for the bottom wallpaper tool */
         }
 
         .box-link {
@@ -133,6 +135,41 @@
             border-bottom: 2px solid #ffffff;
             transform: translate(1px, 1px);
         }
+
+        /* Live Wallpaper Changer UI Element */
+        .wallpaper-changer {
+            position: fixed;
+            bottom: calc(var(--stripe-height) + 10px);
+            right: 20px;
+            z-index: 200;
+        }
+
+        .changer-btn {
+            background: var(--win-grey);
+            color: black;
+            border-top: 1px solid #ffffff;
+            border-left: 1px solid #ffffff;
+            border-right: 1px solid #404040;
+            border-bottom: 1px solid #404040;
+            padding: 4px 10px;
+            font-size: 12px;
+            font-family: Arial, sans-serif;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 1px 1px 0px black;
+        }
+
+        .changer-btn:active {
+            border-top: 1px solid #404040;
+            border-left: 1px solid #404040;
+            border-right: 1px solid #ffffff;
+            border-bottom: 1px solid #ffffff;
+            box-shadow: none;
+        }
+
+        #bg-upload {
+            display: none;
+        }
     </style>
 </head>
 <body>
@@ -164,6 +201,24 @@
             </div>
         </a>
     </div>
+
+    <div class="wallpaper-changer">
+        <label for="bg-upload" class="changer-btn">🖼️ CHANGE WALLPAPER</label>
+        <input type="file" id="bg-upload" accept="image/*" onchange="updateBackground(this)">
+    </div>
+
+    <script>
+        function updateBackground(input) {
+            if (input.files && input.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    // Update the custom property to show the newly selected file instantly
+                    document.documentElement.style.setProperty('--bg-image', `url('${e.target.result}')`);
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+    </script>
 
 </body>
 </html>
