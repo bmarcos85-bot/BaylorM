@@ -1,1 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TextEdit - GLITCH HUB</title>
+    <style>
+        :root {
+            --bg-color: #ff5733; /* CUSTOMIZE YOUR BACKGROUND COLOR HERE */
+            --win-grey: #c0c0c0;
+            --win-blue: linear-gradient(90deg, #000080, #1084d0);
+            --font-main: "Futura", "Trebuchet MS", sans-serif;
+            --stripe-height: 20px;
+        }
 
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color);
+            font-family: var(--font-main);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* Top and Bottom Black Stripes */
+        body::before, body::after {
+            content: "";
+            position: fixed;
+            left: 0;
+            width: 100%;
+            height: var(--stripe-height);
+            background-color: black;
+            z-index: 100;
+        }
+        body::before { top: 0; }
+        body::after { bottom: 0; }
+
+        /* The Large TextEdit Window */
+        .window {
+            background: var(--win-grey);
+            border-top: 2px solid #ffffff;
+            border-left: 2px solid #ffffff;
+            border-right: 2px solid #404040;
+            border-bottom: 2px solid #404040;
+            box-shadow: 4px 4px 0px black;
+            width: 80%; /* Much bigger size */
+            max-width: 800px;
+            padding: 3px;
+        }
+
+        .window-header {
+            background: var(--win-blue);
+            color: white;
+            padding: 4px 10px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Nav back button styled like an 'X' or 'Back' */
+        .back-btn {
+            background: var(--win-grey);
+            color: black;
+            border-top: 1px solid #ffffff;
+            border-left: 1px solid #ffffff;
+            border-right: 1px solid #404040;
+            border-bottom: 1px solid #404040;
+            text-decoration: none;
+            padding: 2px 8px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .window-content {
+            margin-top: 3px;
+            background: #ffffff;
+            border: 2px inset #808080;
+            height: 400px; /* Large area for writing */
+            padding: 20px;
+            overflow-y: auto;
+            color: black;
+            line-height: 1.6;
+            font-family: 'Courier New', Courier, monospace; /* Classic typewriter font */
+        }
+
+        /* Custom Blinking Cursor */
+        .cursor {
+            display: inline-block;
+            width: 10px;
+            height: 18px;
+            background-color: black;
+            animation: blink 1s step-end infinite;
+            vertical-align: middle;
+            margin-left: 5px;
+        }
+
+        @keyframes blink {
+            50% { opacity: 0; }
+        }
+
+        .home-link {
+            position: absolute;
+            top: 40px;
+            left: 40px;
+            color: white;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="window">
+        <div class="window-header">
+            <span>README.txt - TextEdit</span>
+            <a href="index.html" class="back-btn">X</a>
+        </div>
+        <div class="window-content">
+            <p>
+                This is where you can write your paragraph. 
+                The layout uses a fixed-width font to mimic the look of 
+                Notepad and TextEdit applications from the early 2000s. 
+                Everything inside this white box is fully customizable.
+            </p>
+            <p>
+                You can add as much text as you want here. If the text 
+                gets too long, a scrollbar will appear on the right side, 
+                just like a real vintage computer program.
+            </p>
+            <span class="cursor"></span>
+        </div>
+    </div>
+
+</body>
+</html>
