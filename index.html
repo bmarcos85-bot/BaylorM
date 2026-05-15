@@ -1,1 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GLITCH HUB</title>
+    <style>
+        /* CUSTOMIZE THESE VARIABLES */
+        :root {
+            --bg-color: #e0e0e0; /* Change your background color here */
+            --box-bg: #ffffff;
+            --accent-color: #000000;
+            --font-main: "Futura", "Trebuchet MS", Arial, sans-serif;
+        }
 
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color);
+            font-family: var(--font-main);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        /* Top and Bottom Black Lines */
+        body::before, body::after {
+            content: "";
+            position: fixed;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: black;
+            z-index: 10;
+        }
+        body::before { top: 0; }
+        body::after { bottom: 0; }
+
+        h1 {
+            font-size: 4rem;
+            letter-spacing: -2px;
+            margin-top: 60px;
+            text-transform: uppercase;
+        }
+
+        .container {
+            display: flex;
+            gap: 40px;
+            padding: 40px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        /* Pop-up Box Style */
+        .window {
+            background: var(--box-bg);
+            border: 3px solid black;
+            box-shadow: 8px 8px 0px black; /* Hard shadow for pop-up look */
+            width: 300px;
+            overflow: hidden;
+        }
+
+        .window-header {
+            background: black;
+            color: white;
+            padding: 5px 10px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .window-content {
+            padding: 15px;
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .window-content img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: cover;
+            border: 1px solid #ccc;
+        }
+
+        .close-btn {
+            font-family: monospace;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>GLITCH HUB</h1>
+
+    <div class="container">
+        <div class="window">
+            <div class="window-header">
+                <span>TextEdit</span>
+                <span class="close-btn">X</span>
+            </div>
+            <div class="window-content">
+                <img src="https://via.placeholder.com/250x150" alt="TextEdit Content">
+            </div>
+        </div>
+
+        <div class="window">
+            <div class="window-header">
+                <span>Audacity</span>
+                <span class="close-btn">X</span>
+            </div>
+            <div class="window-content">
+                <img src="https://via.placeholder.com/250x150" alt="Audacity Content">
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
