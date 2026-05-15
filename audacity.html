@@ -1,1 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Audacity - GLITCH HUB</title>
+    <style>
+        :root {
+            /* 1. REPLACE THE URL BELOW WITH YOUR BACKGROUND IMAGE FILE */
+            --bg-image: url('your-background-here.jpg'); 
+            --bg-fallback-color: #008080; 
+            
+            --win-grey: #c0c0c0;
+            --win-blue: linear-gradient(90deg, #000080, #1084d0);
+            --font-main: "Futura", "Trebuchet MS", sans-serif;
+            --stripe-height: 30px;
+        }
 
+        body {
+            margin: 0;
+            padding: 0;
+            /* Applies background image, centered and covering the whole screen */
+            background: var(--bg-image) no-repeat center center fixed;
+            background-size: cover;
+            background-color: var(--bg-fallback-color);
+            
+            font-family: var(--font-main);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Thick Black Stripes */
+        body::before, body::after {
+            content: "";
+            position: fixed;
+            left: 0;
+            width: 100%;
+            height: var(--stripe-height);
+            background-color: black;
+            z-index: 100;
+        }
+        body::before { top: 0; }
+        body::after { bottom: 0; }
+
+        /* Layout Wrapper (Arranged Vertically: Text Top, Images Bottom) */
+        .workspace {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 25px;
+            padding: 60px 20px;
+            z-index: 10;
+            max-width: 900px; /* Limits overall width to look clean */
+            width: 100%;
+        }
+
+        /* Retro Window Styling */
+        .window {
+            background: var(--win-grey);
+            border-top: 2px solid #ffffff;
+            border-left: 2px solid #ffffff;
+            border-right: 2px solid #404040;
+            border-bottom: 2px solid #404040;
+            box-shadow: 6px 6px 0px rgba(0,0,0,0.5);
+            padding: 3px;
+        }
+
+        .window-header {
+            background: var(--win-blue);
+            color: white;
+            padding: 4px 10px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Stretched out Text Box */
+        .main-text-window {
+            width: 100%;
+        }
+
+        .window-content {
+            margin-top: 3px;
+            background: #ffffff;
+            border: 2px inset #808080;
+            overflow: hidden;
+        }
+
+        .text-area {
+            height: 180px; /* Shorter height since it spans horizontally */
+            padding: 20px;
+            overflow-y: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 1rem;
+            line-height: 1.5;
+            color: black;
+        }
+
+        /* Horizontal Container for Images */
+        .image-row {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            width: 100%;
+            flex-wrap: wrap; /* Allows wrapping on smaller screens */
+        }
+
+        /* Individual Image Window Size */
+        .image-window {
+            flex: 1;
+            min-width: 180px; /* Keeps them from getting too squished */
+        }
+
+        .image-area {
+            height: 160px; /* Adjusted height for the row format */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #000;
+        }
+
+        .image-area img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .back-btn {
+            background: var(--win-grey);
+            color: black;
+            border: 1px solid white;
+            border-right-color: #404040;
+            border-bottom-color: #404040;
+            text-decoration: none;
+            font-size: 12px;
+            padding: 1px 6px;
+            font-family: Arial, sans-serif;
+        }
+
+        .cursor {
+            display: inline-block;
+            width: 10px;
+            height: 18px;
+            background-color: black;
+            animation: blink 1s step-end infinite;
+            vertical-align: middle;
+        }
+
+        @keyframes blink { 50% { opacity: 0; } }
+    </style>
+</head>
+<body>
+
+    <div class="workspace">
+        
+        <div class="window main-text-window">
+            <div class="window-header">
+                <span>TRACK_INFO.txt - Audacity</span>
+                <a href="index.html" class="back-btn">X</a>
+            </div>
+            <div class="window-content text-area">
+                <p>This is the Audacity project space.</p>
+                <p>You can use this layout to describe your audio data-bending processes, sonic corruption, or sound wave manipulations. The window stretches entirely across the interface to give you a clean reading plane above your visual assets.</p>
+                <span class="cursor"></span>
+            </div>
+        </div>
+
+        <div class="image-row">
+            <div class="window image-window">
+                <div class="window-header"><span>wave_1.jpg</span></div>
+                <div class="window-content image-area"><img src="IMG_8709.JPG" alt="1"></div>
+            </div>
+            <div class="window image-window">
+                <div class="window-header"><span>wave_2.jpg</span></div>
+                <div class="window-content image-area"><img src="IMG_1541.JPG" alt="2"></div>
+            </div>
+            <div class="window image-window">
+                <div class="window-header"><span>wave_3.jpg</span></div>
+                <div class="window-content image-area"><img src="IMG_0689.JPG" alt="3"></div>
+            </div>
+            <div class="window image-window">
+                <div class="window-header"><span>wave_4.jpg</span></div>
+                <div class="window-content image-area"><img src="IMG_0766.jpeg" alt="4"></div>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>
