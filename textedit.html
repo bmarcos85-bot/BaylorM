@@ -6,17 +6,24 @@
     <title>TextEdit - GLITCH HUB</title>
     <style>
         :root {
-            --bg-color: #ff5733; 
+            /* 1. REPLACE THE URL BELOW WITH YOUR BACKGROUND IMAGE FILE */
+            --bg-image: url('your-background-here.jpg'); 
+            --bg-fallback-color: #ff5733; 
+            
             --win-grey: #c0c0c0;
             --win-blue: linear-gradient(90deg, #000080, #1084d0);
             --font-main: "Futura", "Trebuchet MS", sans-serif;
-            --stripe-height: 25px;
+            --stripe-height: 30px;
         }
 
         body {
             margin: 0;
             padding: 0;
-            background-color: var(--bg-color);
+            /* Applies background image, centered and covering the whole screen */
+            background: var(--bg-image) no-repeat center center fixed;
+            background-size: cover;
+            background-color: var(--bg-fallback-color);
+            
             font-family: var(--font-main);
             display: flex;
             justify-content: center;
@@ -38,52 +45,50 @@
         body::before { top: 0; }
         body::after { bottom: 0; }
 
-        /* Layout Wrapper */
         .workspace {
             display: flex;
-            align-items: center;
-            gap: 20px;
-            padding: 40px;
-            margin-top: 20px;
+            align-items: flex-start; /* Aligns columns to top */
+            gap: 30px;
+            padding: 60px 20px;
+            z-index: 10;
         }
 
-        /* Column for side images */
         .side-column {
             display: flex;
             flex-direction: column;
-            gap: 15px;
+            gap: 20px;
         }
 
-        /* Retro Window Base Style */
+        /* Retro Window Styling */
         .window {
             background: var(--win-grey);
             border-top: 2px solid #ffffff;
             border-left: 2px solid #ffffff;
             border-right: 2px solid #404040;
             border-bottom: 2px solid #404040;
-            box-shadow: 4px 4px 0px black;
+            box-shadow: 6px 6px 0px rgba(0,0,0,0.5);
             padding: 3px;
         }
 
         .window-header {
             background: var(--win-blue);
             color: white;
-            padding: 3px 8px;
-            font-size: 0.8rem;
+            padding: 4px 10px;
+            font-size: 0.9rem;
             font-weight: bold;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
-        /* Main Text Box Width */
+        /* Larger Text Box */
         .main-text-window {
-            width: 500px;
+            width: 550px;
         }
 
-        /* Smaller Image Boxes */
+        /* Larger Image Boxes */
         .image-window {
-            width: 120px;
+            width: 180px; /* Increased from 120px */
         }
 
         .window-content {
@@ -94,25 +99,27 @@
         }
 
         .text-area {
-            height: 350px;
-            padding: 15px;
+            height: 480px; /* Taller to match the new image column height */
+            padding: 20px;
             overflow-y: auto;
             font-family: 'Courier New', monospace;
-            font-size: 0.9rem;
-            line-height: 1.4;
+            font-size: 1rem;
+            line-height: 1.5;
+            color: black;
         }
 
         .image-area {
-            height: 100px;
+            height: 140px; /* Increased from 100px */
             display: flex;
             align-items: center;
             justify-content: center;
+            background-color: #000; /* Black background for any image gaps */
         }
 
         .image-area img {
-            max-width: 100%;
-            max-height: 100%;
-            object-fit: cover;
+            width: 100%;
+            height: 100%;
+            object-fit: contain; /* Ensures the whole glitch is visible without cropping */
         }
 
         .back-btn {
@@ -122,16 +129,18 @@
             border-right-color: #404040;
             border-bottom-color: #404040;
             text-decoration: none;
-            font-size: 10px;
-            padding: 0 4px;
+            font-size: 12px;
+            padding: 1px 6px;
+            font-family: Arial, sans-serif;
         }
 
         .cursor {
             display: inline-block;
-            width: 8px;
-            height: 15px;
+            width: 10px;
+            height: 18px;
             background-color: black;
             animation: blink 1s step-end infinite;
+            vertical-align: middle;
         }
 
         @keyframes blink { 50% { opacity: 0; } }
@@ -143,45 +152,45 @@
         
         <div class="side-column">
             <div class="window image-window">
-                <div class="window-header"><span>img_1</span></div>
+                <div class="window-header"><span>img_1.jpg</span></div>
                 <div class="window-content image-area"><img src="IMG_8709.JPG" alt="1"></div>
             </div>
             <div class="window image-window">
-                <div class="window-header"><span>img_2</span></div>
+                <div class="window-header"><span>img_2.jpg</span></div>
                 <div class="window-content image-area"><img src="IMG_1541.JPG" alt="2"></div>
             </div>
             <div class="window image-window">
-                <div class="window-header"><span>img_3</span></div>
+                <div class="window-header"><span>img_3.jpg</span></div>
                 <div class="window-content image-area"><img src="IMG_0689.JPG" alt="3"></div>
             </div>
         </div>
 
         <div class="window main-text-window">
             <div class="window-header">
-                <span>NOTES.txt</span>
+                <span>NOTES.txt - TextEdit</span>
                 <a href="index.html" class="back-btn">X</a>
             </div>
             <div class="window-content text-area">
                 <p>These are my images that I created on TextEdit.</p>
-                <p>With these images I corrupting the data of an image, this makes it confused and causes random glitches to come on the screen.
-                What I did for most these images were copy huge chuncks of the data and paste it in another section, this is what causes a specific
-                of an image to show twice. For the random stripes of color or cut off sections, that is when I delete a big section of the data. I also
-                copy and paste other texts into the data and this makes it break even more.</p>
+                <p>By corrupting the raw data of an image, I make the system confused, which causes random glitches to appear.
+                For most of these, I copied huge chunks of data and pasted them elsewhere, causing specific parts of the image to repeat. 
+                For the random stripes of color or cut-off sections, I deleted large sections of the data. I also 
+                pasted external text strings into the image code to break it even further.</p>
                 <span class="cursor"></span>
             </div>
         </div>
 
         <div class="side-column">
             <div class="window image-window">
-                <div class="window-header"><span>img_4</span></div>
+                <div class="window-header"><span>img_4.jpeg</span></div>
                 <div class="window-content image-area"><img src="IMG_0766.jpeg" alt="4"></div>
             </div>
             <div class="window image-window">
-                <div class="window-header"><span>img_5</span></div>
+                <div class="window-header"><span>img_5.pdf</span></div>
                 <div class="window-content image-area"><img src="IMG_4870.pdf" alt="5"></div>
             </div>
             <div class="window image-window">
-                <div class="window-header"><span>img_6</span></div>
+                <div class="window-header"><span>img_6.jpg</span></div>
                 <div class="window-content image-area"><img src="IMG_9054.JPG" alt="6"></div>
             </div>
         </div>
