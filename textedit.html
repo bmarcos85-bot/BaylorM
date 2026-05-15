@@ -45,11 +45,19 @@
         body::before { top: 0; }
         body::after { bottom: 0; }
 
+        /* Persistent Desktop Navigation Interface */
+        .desktop-nav {
+            position: fixed;
+            top: calc(var(--stripe-height) + 15px);
+            left: 20px;
+            z-index: 200;
+        }
+
         .workspace {
             display: flex;
             align-items: flex-start; /* Aligns columns to top */
             gap: 30px;
-            padding: 60px 20px;
+            padding: 80px 20px 60px 20px; /* Top padding open for desktop home icon */
             z-index: 10;
         }
 
@@ -88,7 +96,13 @@
 
         /* Larger Image Boxes */
         .image-window {
-            width: 180px; /* Increased from 120px */
+            width: 180px; 
+            cursor: pointer;
+            transition: transform 0.1s ease;
+        }
+
+        .image-window:hover {
+            transform: scale(1.03); /* Tactile feedback on grid select */
         }
 
         .window-content {
@@ -109,7 +123,7 @@
         }
 
         .image-area {
-            height: 140px; /* Increased from 100px */
+            height: 140px; 
             display: flex;
             align-items: center;
             justify-content: center;
@@ -122,7 +136,8 @@
             object-fit: contain; /* Ensures the whole glitch is visible without cropping */
         }
 
-        .back-btn {
+        /* Retro Platform Buttons */
+        .back-btn, .close-modal-btn, .home-btn {
             background: var(--win-grey);
             color: black;
             border: 1px solid white;
@@ -132,70 +147,3 @@
             font-size: 12px;
             padding: 1px 6px;
             font-family: Arial, sans-serif;
-        }
-
-        .cursor {
-            display: inline-block;
-            width: 10px;
-            height: 18px;
-            background-color: black;
-            animation: blink 1s step-end infinite;
-            vertical-align: middle;
-        }
-
-        @keyframes blink { 50% { opacity: 0; } }
-    </style>
-</head>
-<body>
-
-    <div class="workspace">
-        
-        <div class="side-column">
-            <div class="window image-window">
-                <div class="window-header"><span>img_1.jpg</span></div>
-                <div class="window-content image-area"><img src="IMG_8709.JPG" alt="1"></div>
-            </div>
-            <div class="window image-window">
-                <div class="window-header"><span>img_2.jpg</span></div>
-                <div class="window-content image-area"><img src="IMG_1541.JPG" alt="2"></div>
-            </div>
-            <div class="window image-window">
-                <div class="window-header"><span>img_3.jpg</span></div>
-                <div class="window-content image-area"><img src="IMG_0689.JPG" alt="3"></div>
-            </div>
-        </div>
-
-        <div class="window main-text-window">
-            <div class="window-header">
-                <span>NOTES.txt - TextEdit</span>
-                <a href="index.html" class="back-btn">X</a>
-            </div>
-            <div class="window-content text-area">
-                <p>These are my images that I created on TextEdit.</p>
-                <p>By corrupting the raw data of an image, I make the system confused, which causes random glitches to appear.
-                For most of these, I copied huge chunks of data and pasted them elsewhere, causing specific parts of the image to repeat. 
-                For the random stripes of color or cut-off sections, I deleted large sections of the data. I also 
-                pasted external text strings into the image code to break it even further.</p>
-                <span class="cursor"></span>
-            </div>
-        </div>
-
-        <div class="side-column">
-            <div class="window image-window">
-                <div class="window-header"><span>img_4.jpeg</span></div>
-                <div class="window-content image-area"><img src="IMG_0766.jpeg" alt="4"></div>
-            </div>
-            <div class="window image-window">
-                <div class="window-header"><span>img_5.pdf</span></div>
-                <div class="window-content image-area"><img src="IMG_4870.pdf" alt="5"></div>
-            </div>
-            <div class="window image-window">
-                <div class="window-header"><span>img_6.jpg</span></div>
-                <div class="window-content image-area"><img src="IMG_9054.JPG" alt="6"></div>
-            </div>
-        </div>
-
-    </div>
-
-</body>
-</html>
